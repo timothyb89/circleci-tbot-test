@@ -17,7 +17,7 @@ jobs:
           name: "Run Machine ID"
           command: |
             ./teleport/tbot start identity --join-method=circleci --token=circleci --proxy-server tim-tbot-test.cloud.gravitational.io:443 --storage=./storage --destination=./destination --oneshot
-            ./teleport/tsh -i ./destination/identity --proxy tim-tbot-test.cloud.gravitational.io:443
+            ./teleport/tsh -i ./destination/identity --proxy tim-tbot-test.cloud.gravitational.io:443 ls
 workflows:
   tbot-test:
     jobs:
