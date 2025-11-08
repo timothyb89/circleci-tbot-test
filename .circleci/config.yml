@@ -13,13 +13,11 @@ jobs:
             #wget -q -O teleport.tar.gz https://cdn.teleport.dev/teleport-v18.3.2-linux-amd64-bin.tar.gz
             # curl "https://example.teleport.sh:443/scripts/install.sh" | sudo bash
             tar zxvf teleport.tar.gz
-            ./teleport/tbot start identity --join-method=circleci --token=circleci --proxy-server tim-tbot-test.cloud.gravitational.io:443 --destination=./destination --oneshot
+      - run:
+          name: "Run Machine ID"
+          command: |
+            ./teleport/tbot start identity --join-method=circleci --token=circleci --proxy-server tim-tbot-test.cloud.gravitational.io:443 --storage=./storage --destination=./destination --oneshot
             ./teleport/tsh -i ./destination/identity --proxy tim-tbot-test.cloud.gravitational.io:443
-      #- run:
-      #    name: "Run Machine ID"
-      #    command: |
-      #      export TELEPORT_ANONYMOUS_TELEMETRY=1
-      #      tbot start -c tbot.yaml
 workflows:
   tbot-test:
     jobs:
