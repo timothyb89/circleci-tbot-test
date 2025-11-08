@@ -1,0 +1,24 @@
+# See: https://circleci.com/docs/configuration-reference
+version: 2.1
+jobs:
+  write-run-log:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "Install Teleport"
+          command: |
+            # curl "https://example.teleport.sh:443/scripts/install.sh" | sudo bash
+            echo "hello world"
+      #- run:
+      #    name: "Run Machine ID"
+      #    command: |
+      #      export TELEPORT_ANONYMOUS_TELEMETRY=1
+      #      tbot start -c tbot.yaml
+workflows:
+  write-run-log:
+    jobs:
+      - write-run-log:
+          context:
+            - teleport-access
