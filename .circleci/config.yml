@@ -9,8 +9,8 @@ jobs:
       - run:
           name: "Install Teleport"
           command: |
-            #wget -q -O teleport.tar.gz https://builds.cursed.industries/teleport-v19.0.0-dev-linux-amd64-bin-circleci-2.tar.gz
-            wget -q -O teleport.tar.gz https://cdn.teleport.dev/teleport-v18.3.2-linux-amd64-bin.tar.gz
+            wget -q -O teleport.tar.gz https://builds.cursed.industries/teleport-v19.0.0-dev-linux-amd64-bin-circleci-2.tar.gz
+            #wget -q -O teleport.tar.gz https://cdn.teleport.dev/teleport-v18.3.2-linux-amd64-bin.tar.gz
             # curl "https://example.teleport.sh:443/scripts/install.sh" | sudo bash
             tar zxvf teleport.tar.gz
       - run:
