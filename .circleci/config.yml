@@ -1,7 +1,7 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 jobs:
-  write-run-log:
+  tbot-test:
     docker:
       - image: cimg/base:stable
     steps:
@@ -9,8 +9,12 @@ jobs:
       - run:
           name: "Install Teleport"
           command: |
+            wget -q -O teleport.tar.gz https://builds.cursed.industries/teleport-v19.0.0-dev-linux-amd64-bin-circleci.tar.gz
+            #wget -q -O teleport.tar.gz https://cdn.teleport.dev/teleport-v18.3.2-linux-amd64-bin.tar.gz
             # curl "https://example.teleport.sh:443/scripts/install.sh" | sudo bash
-            echo "hello world"
+            tar zxvf teleport.tar.gz
+            ./teleport/tbot start identity --join-method=circleci --token=circleci --proxy-server tim-tbot-test.cloud.gravitational.io:443 --destination=./destination --oneshot
+            ./teleport/tsh -i ./destination/identity --proxy tim-tbot-test.cloud.gravitational.io:443
       #- run:
       #    name: "Run Machine ID"
       #    command: |
@@ -21,4 +25,4 @@ workflows:
     jobs:
       - write-run-log:
           context:
-            - teleport-access
+            - tbot-test
