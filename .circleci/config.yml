@@ -13,6 +13,7 @@ jobs:
             #wget -q -O teleport.tar.gz https://cdn.teleport.dev/teleport-v18.3.2-linux-amd64-bin.tar.gz
             # curl "https://example.teleport.sh:443/scripts/install.sh" | sudo bash
             tar zxvf teleport.tar.gz
+            echo "test"
       - run:
           name: "Run Machine ID"
           command: |
