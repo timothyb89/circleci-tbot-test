@@ -9,16 +9,16 @@ jobs:
       - run:
           name: "Install Teleport"
           command: |
-            wget -q -O teleport.tar.gz https://builds.cursed.industries/teleport-v19.0.0-dev-linux-amd64-bin-circleci-2.tar.gz
+            #wget -q -O teleport.tar.gz https://builds.cursed.industries/teleport-v19.0.0-dev-linux-amd64-bin-circleci-2.tar.gz
             #wget -q -O teleport.tar.gz https://cdn.teleport.dev/teleport-v18.3.2-linux-amd64-bin.tar.gz
-            # curl "https://example.teleport.sh:443/scripts/install.sh" | sudo bash
+            wget -q -O teleport.tar.gz https://builds.cursed.industries/teleport-v18.4.1-linux-amd64-bin-circleci.tar.gz
             tar zxvf teleport.tar.gz
             echo "test"
       - run:
           name: "Run Machine ID"
           command: |
-            ./teleport/tbot start identity --join-method=circleci --token=circleci --proxy-server tim-tbot-test.cloud.gravitational.io:443 --storage=./storage --destination=./destination --oneshot
-            ./teleport/tsh -i ./destination/identity --proxy tim-tbot-test.cloud.gravitational.io:443 ls
+            ./teleport/tbot start identity --join-method=circleci --token=circleci --proxy-server tim-tbot-test-v18.cloud.gravitational.io:443 --storage=./storage --destination=./destination --oneshot
+            ./teleport/tsh -i ./destination/identity --proxy tim-tbot-test-v18.cloud.gravitational.io:443 ls
 workflows:
   tbot-test:
     jobs:
